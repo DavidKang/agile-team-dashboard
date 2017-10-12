@@ -6,7 +6,9 @@ class SprintsController < ApplicationController
   before_action :set_sprint, only: %i(show edit update destroy start)
 
   def index
-    @sprints = Sprint.all
+    @current_sprint = Sprint.current
+    @next_sprints = Sprint.nexts
+    @finished_sprints = Sprint.finished.page(params[:page])
     @sprint = Sprint.new
   end
 

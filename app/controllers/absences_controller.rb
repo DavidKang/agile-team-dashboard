@@ -3,7 +3,8 @@ class AbsencesController < ApplicationController
   before_action :set_absence, only: %i(show edit update destroy)
 
   def index
-    @absences = current_user.absences
+    @active_absences = current_user.absences.active
+    @finished_absences = current_user.absences.finished.page params[:page]
     @absence = Absence.new
   end
 

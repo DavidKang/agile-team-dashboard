@@ -1,9 +1,9 @@
 .ui.grid
   .eight.wide.column
     .ui.segment
-      h1 Absences
+      h1 Current Absences
       .ui.relaxed.divided.list
-        - @absences.each do |absence|
+        - @active_absences.each do |absence|
           .item
             .header
               = "#{absence.start_date.strftime("%d-%m-%Y %H:%M")} until #{absence.end_date.strftime("%d-%m-%Y %H:%M")}"
@@ -12,6 +12,20 @@
                   i.write.icon
                 = link_to absence_path(absence), method: :delete do
                   i.remove.icon
+
+    .ui.segment
+      h1 Finished Absences
+      .ui.relaxed.divided.list
+        - @finished_absences.each do |absence|
+          .item
+            .header
+              = "#{absence.start_date.strftime("%d-%m-%Y %H:%M")} until #{absence.end_date.strftime("%d-%m-%Y %H:%M")}"
+              span.action.right.floated
+                = link_to edit_absence_path(absence) do
+                  i.write.icon
+                = link_to absence_path(absence), method: :delete do
+                  i.remove.icon
+        = paginate @finished_absences
 
   .eight.wide.column
     .ui.segment

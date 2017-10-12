@@ -1,6 +1,7 @@
 class Sprint < ApplicationRecord
   has_many :meetings, dependent: :destroy
 
+  scope :nexts, (-> { where('DATE(start_date) > ?', Time.zone.today).order(start_date: :asc) })
   scope :finished, (-> { where('DATE(end_date) < ?', Time.zone.today).order(start_date: :asc) })
 
   validates :number, :start_date, :end_date, presence: true

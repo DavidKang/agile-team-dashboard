@@ -4,7 +4,7 @@ class MeetingsController < ApplicationController
 
   def index
     @active_meetings = Meeting.active
-    @finished_meetings = Meeting.finished
+    @finished_meetings = Meeting.finished.page(params[:page]).per(10)
     @meeting = Meeting.new
   end
 

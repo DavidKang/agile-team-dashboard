@@ -30,6 +30,7 @@
                     i.write.icon
                   = link_to meeting_path(meeting), method: :delete do
                     i.remove.icon
+        = paginate @finished_meetings
 
 
   .eight.wide.column

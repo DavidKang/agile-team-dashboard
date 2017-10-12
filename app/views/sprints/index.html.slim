@@ -1,9 +1,29 @@
 .ui.grid
   .eight.wide.column
     .ui.segment
-      h1 Sprint
+      h1 Current Sprint
       .ui.relaxed.divided.list
-        - @sprints.each do |sprint|
+        .item
+          .content
+            - if @current_sprint
+              .header
+                = @current_sprint.number
+                .description
+                  = "#{@current_sprint.start_date.strftime("%d-%m-%Y")} until #{@current_sprint.end_date.strftime("%d-%m-%Y")}"
+                  span style="padding-left: 10px;"
+                    - if @current_sprint.unstarted_sprint?
+                      = link_to sprint_start_path(@current_sprint) do
+                        i.video.play.icon
+                        'Start sprint
+                  span.action.right.floated
+                    = link_to edit_sprint_path(@current_sprint) do
+                      i.write.icon
+                    = link_to sprint_path(@current_sprint), method: :delete do
+                      i.remove.icon
+    .ui.segment
+      h1 Next Sprints
+      .ui.relaxed.divided.list
+        - @next_sprints.each do |sprint|
           .item
             .content
               .header
@@ -20,6 +40,22 @@
                       i.write.icon
                     = link_to sprint_path(sprint), method: :delete do
                       i.remove.icon
+    .ui.segment
+      h1 Finished Sprints
+      .ui.relaxed.divided.list
+        - @finished_sprints.each do |sprint|
+          .item
+            .content
+              .header
+                = sprint.number
+                .description
+                  = "#{sprint.start_date.strftime("%d-%m-%Y")} until #{sprint.end_date.strftime("%d-%m-%Y")}"
+                  span.action.right.floated
+                    = link_to edit_sprint_path(sprint) do
+                      i.write.icon
+                    = link_to sprint_path(sprint), method: :delete do
+                      i.remove.icon
+        = paginate @finished_sprints
 
   .eight.wide.column
     .ui.segment
