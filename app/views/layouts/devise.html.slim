@@ -6,7 +6,21 @@ html
     = stylesheet_link_tag    'devise', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    .ui.middle.aligned.eight.column.centered.grid.fixed-layout
+    .flash-msgs-div.ui.grid.centered
+      .middle.aligned.content.eight.wide.column
+        - flash.each_with_index do |key, index|
+          div class="ui #{key[0]} message" id="#{key[0]}-message-#{index}"
+            i.close.icon
+            - if key[1].is_a?(Array)
+              .header
+                = key[1].first
+              ul.list
+                - key[1].each do |content|
+                 li= content
+            - else
+              .header
+                = key[1]
+    .ui.grid.middle.aligned.eight.column.centered.fixed-layout
       = yield
 
     footer.ui.bottom.fixed
