@@ -10,17 +10,17 @@ html
     = render partial: 'shared/sidebar'
 
     section
-      - flash.each do |key, message|
-        div class="ui #{key} message"
+      - flash.each_with_index do |key, index| # key[0]:type ; key[1]:message
+        div class="ui #{key[0]} message" id="#{key[0]}-message-#{index}"
           i.close.icon
-          - if message.is_a?(Array)
+          - if key[1].is_a?(Array)
             .header
-              = message.first
+              = key[1].first
             ul.list
-              - message.last.each do |content|
+              - key[1].each do |content|
                li= content
           - else
             .header
-              = message
+              = key[1]
 
       = yield
