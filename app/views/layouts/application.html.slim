@@ -10,17 +10,6 @@ html
     = render partial: 'shared/sidebar'
 
     section
-      - flash.each_with_index do |key, index| # key[0]:type ; key[1]:message
-        div class="ui #{key[0]} message" id="#{key[0]}-message-#{index}"
-          i.close.icon
-          - if key[1].is_a?(Array)
-            .header
-              = key[1].first
-            ul.list
-              - key[1].each do |content|
-               li= content
-          - else
-            .header
-              = key[1]
+      = render 'shared/flash-messages'
 
       = yield
