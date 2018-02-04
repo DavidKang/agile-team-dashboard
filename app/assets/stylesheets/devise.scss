@@ -1,12 +1,21 @@
 @import 'semantic-ui';
 @import 'colors';
 
+.flash-msgs-div {
+  .ui.message{
+    position: relative;
+    z-index: 2;
+    margin-top: 4rem;
+  }
+}
+
 .fixed-layout {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  margin-top: 0 !important;
   background: $color2;
 
   .login {

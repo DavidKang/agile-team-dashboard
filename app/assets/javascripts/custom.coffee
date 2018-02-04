@@ -38,4 +38,7 @@ $(document).on "turbolinks:load", ->
         }
 
       return
+  $('i.close.icon').click ->
+    $('#' + @closest('div').id).hide()
+    return
 
