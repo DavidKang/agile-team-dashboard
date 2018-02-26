@@ -13,7 +13,12 @@
           td.center.aligned = sprint.end_date.strftime("%d-%m-%Y")
           td.right.aligned
             - if sprint.unstarted_sprint?
-              = link_to sprint_start_path(sprint) do
+              = link_to sprint_start_path(sprint), class: 'sprint-popup',
+                data: { title: 'Start Sprint',
+                        content: "Create burndown-data-#{sprint.number}.yaml, " \
+                                 'print the burndown-chart and upload it to the sprint board. ' \
+                                 'This needs to be done the first day of the sprint, ' \
+                                 'otherwise the file will need to be manually created.' } do
                 i.video.play.icon
             = link_to edit_sprint_path(sprint) do
               i.write.icon
