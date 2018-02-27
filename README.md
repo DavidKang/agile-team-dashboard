@@ -43,7 +43,10 @@ We are using [Vagrant](https://www.vagrantup.com/) to create our development env
 
 To contribute code open pull requests.
 
-Ensure that RSpec, Rubocop, Slim-Lint, Git Cop and JSHint pass locally before sending your PR and always that you add new changes.
+Ensure that RSpec, Rubocop, Slim-Lint and JSHint pass locally before sending your PR and always that you add new changes.
+
+Ensure you write good commit message.
+You may want to read this [Commit messages guide](https://github.com/RomuloOliveira/commit-messages-guide).
 
 
 ## To run RSpec test
@@ -89,17 +92,6 @@ To run Slim-Lint in the current directory:
 ```
 vagrant exec bundle exec slim-lint .
 ```
-
-
-## To run Git Cop
-
-To run Git Cop, run the following task that will copy the configuration file in the correct directory for you:
-
-```
-vagrant exec bundle exec rake git_cop
-```
-
-Note that you need that your local master branch is up to date, as Git Cop will only check the new commits from your current branch commparing it with your local master branch.
 
 
 ## To run JSHint
