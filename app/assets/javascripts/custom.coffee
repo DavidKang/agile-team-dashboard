@@ -42,3 +42,6 @@ $(document).on "turbolinks:load", ->
     $('#' + @closest('div').id).hide()
     return
 
+  $('.sprint-popup').popup(
+    position: 'top center'
+  )
