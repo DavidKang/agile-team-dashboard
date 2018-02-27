@@ -18,7 +18,6 @@ Naming/FileName:
   Exclude:
     - 'Gemfile'
     - 'Vagrantfile'
-    - 'lib/tasks/git-cop.rake'
 
 # Offense count: 3
 # Configuration parameters: Include.
