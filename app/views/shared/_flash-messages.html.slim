@@ -5,8 +5,8 @@
       .header
         = key[1].first
       ul.list
-        - key[1].each do |content|
-         li= content
+        - key[1][1].each do |content|
+          li= content
     - else
       .header
         = key[1]

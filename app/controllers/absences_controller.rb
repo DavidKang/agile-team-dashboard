@@ -15,7 +15,7 @@ class AbsencesController < ApplicationController
       flash[:success] = 'Absence was successfully created'
       redirect_to absences_path
     else
-      flash.now[:error] = 'ohhhhhhhh'
+      flash.now[:error] = ['Something happens:', @absence.errors.full_messages]
       render :new
     end
   end
@@ -27,7 +27,7 @@ class AbsencesController < ApplicationController
       flash[:success] = 'Absence was successfully updated'
       redirect_to absences_path
     else
-      flash.now[:error] = 'ohhhhhhhh'
+      flash.now[:error] = ['Something happens:', @absence.errors.full_messages]
       render :new
     end
   end
@@ -36,7 +36,7 @@ class AbsencesController < ApplicationController
     if @absence.destroy
       flash[:success] = 'Absence was successfully deleted'
     else
-      flash[:error] = 'ohhhhhhhh'
+      flash[:error] = ['Something happens:', @absence.errors.full_messages]
     end
     redirect_to absences_path
   end
