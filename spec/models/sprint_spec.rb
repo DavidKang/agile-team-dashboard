@@ -5,6 +5,9 @@ RSpec.describe Sprint, type: :model do
     it { should validate_presence_of(attr) }
   end
 
+  subject { create(:sprint) }
+  it { should validate_uniqueness_of(:number) }
+
   describe 'validate' do
     context 'start_on_weekend' do
       let(:sprint) { build(:sprint, start_date: '2017-10-07', end_date: '2017-10-12') }
