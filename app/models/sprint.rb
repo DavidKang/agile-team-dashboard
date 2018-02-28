@@ -4,6 +4,7 @@ class Sprint < ApplicationRecord
   scope :finished, (-> { where('DATE(end_date) < ?', Time.zone.today).order(start_date: :asc) })
 
   validates :number, :start_date, :end_date, presence: true
+  validates :number, uniqueness: true
   validate :starts_on_weekday, if: proc { |sprint| sprint.start_date }
   validate :ends_on_weekday, if: proc { |sprint| sprint.end_date }
   validate :longer_than_three_days, :sprint_collision, if: proc { |sprint| sprint.start_date && sprint.end_date }

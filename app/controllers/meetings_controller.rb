@@ -16,7 +16,7 @@ class MeetingsController < ApplicationController
       flash[:success] = 'Meeting was successfully created'
       redirect_to meetings_path
     else
-      flash.now[:error] = 'ohhhhhhhh'
+      flash.now[:error] = ['Something happens:', @meeting.errors.full_messages]
       render :new
     end
   end
@@ -28,7 +28,7 @@ class MeetingsController < ApplicationController
       flash[:success] = 'Meeting was successfully updated'
       redirect_to meetings_path
     else
-      flash.now[:error] = 'ohhhhhhhh'
+      flash.now[:error] = ['Something happens:', @meeting.errors.full_messages]
       render :new
     end
   end
@@ -37,7 +37,7 @@ class MeetingsController < ApplicationController
     if @meeting.destroy
       flash[:success] = 'Meeting was successfully deleted'
     else
-      flash[:error] = 'ohhhhhhhh'
+      flash[:error] = ['Something happens:', @meeting.errors.full_messages]
     end
     redirect_to meetings_path
   end

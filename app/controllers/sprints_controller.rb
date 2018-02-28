@@ -34,7 +34,7 @@ class SprintsController < ApplicationController
       flash[:success] = 'Sprint was successfully updated'
       redirect_to sprints_path
     else
-      flash.now[:error] = 'ohhhhhhhh'
+      flash.now[:error] = ['Something happens:', @sprint.errors.full_messages]
       render :edit
     end
   end
@@ -43,7 +43,7 @@ class SprintsController < ApplicationController
     if @sprint.destroy
       flash[:success] = 'Sprint was successfully deleted'
     else
-      flash[:error] = 'ohhhhhhhh'
+      flash[:error] = ['Something happens:', @sprint.errors.full_messages]
     end
     redirect_to sprints_path
   end
