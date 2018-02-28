@@ -56,12 +56,11 @@ class SprintsController < ApplicationController
     if $CHILD_STATUS.success? && File.exist?(image_name)
       # TODO: implement this in Trollolo so we don't need to move the file afterwards
       system "mv #{image_name} public/burndown.png"
+      flash[:success] = 'The new sprint was successfully generated'
     else
       file_name = "trollolo/burndown-data-#{@sprint.number}.yaml"
       File.delete(file_name) if File.exist?(file_name)
       flash[:error] = 'Something went wrong, the new sprint was not generated'
-      redirect_to action: 'index'
-      return
     end
 
     redirect_to action: 'index'
