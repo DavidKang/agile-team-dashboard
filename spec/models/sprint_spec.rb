@@ -39,18 +39,32 @@ RSpec.describe Sprint, type: :model do
       it { expect(sprint.errors.full_messages).to eq(['End date sprints with less than 3 days are not allowed']) }
     end
 
-    context 'sprint_collision' do
-      let(:sprint) { create(:sprint, start_date: '2017-10-02', end_date: '2017-10-13') }
-      let(:invalid_sprint) { build(:sprint, start_date: '2017-10-06', end_date: '2017-10-12') }
+    describe 'sprint_collision' do
+      context 'collision when create' do
+        let(:sprint) { create(:sprint, start_date: '2017-10-02', end_date: '2017-10-13') }
+        let(:invalid_sprint) { build(:sprint, start_date: '2017-10-06', end_date: '2017-10-12') }
 
-      before do
-        sprint
-        invalid_sprint.valid?
+        before do
+          sprint
+          invalid_sprint.valid?
+        end
+
+        subject { invalid_sprint.errors.full_messages }
+
+        it { expect(subject.first).to eq('Start date there is already a sprint in those dates') }
       end
 
-      subject { invalid_sprint.errors.full_messages }
+      context 'without collision with itself when edit' do
+        let(:sprint) { create(:sprint, number: 32, start_date: '2017-10-02', end_date: '2017-10-13') }
 
-      it { expect(subject.first).to eq('Start date there is already a sprint in those dates') }
+        before do
+          sprint
+        end
+
+        subject { sprint.update_attributes(number: 34) }
+
+        it { expect(subject).to be true }
+      end
     end
   end
 end
