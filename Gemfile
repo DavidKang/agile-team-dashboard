@@ -48,7 +48,7 @@ gem 'identicon'
 gem 'redcarpet'
 
 gem 'clockwork'
-gem 'trollolo', '>= 0.1.1'
+gem 'trollolo', '>= 0.3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
