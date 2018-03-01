@@ -50,7 +50,7 @@ class SprintsController < ApplicationController
 
   def start
     # Generate new sprint, paint burndown char and upload it to Trello
-    system 'trollolo burndown --new_sprint --plot-to-board --output=trollolo '\
+    system 'trollolo burndown --new-sprint --plot-to-board --output=trollolo '\
             "--total_days=#{@sprint.days} --weekend_lines=#{@sprint.weekend_lines} --sprint-number=#{@sprint.number}"
     image_name = "trollolo/burndown-#{@sprint.number}.png"
     if $CHILD_STATUS.success? && File.exist?(image_name)
