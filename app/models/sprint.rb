@@ -33,6 +33,22 @@ class Sprint < ApplicationRecord
     (0..(number_weekends - 1)).map { |i| first_line + (i * 5) }.join(' ')
   end
 
+  def review
+    meetings.reviews.first
+  end
+
+  def standups
+    meetings.standups
+  end
+
+  def review_has_finished_within?(start_time, end_time)
+    review.end_date > Time.zone.now - start_time && review.end_date <= Time.zone.now - end_time
+  end
+
+  def standup_will_start_within?(start_time, end_time)
+    standups.started_after_until(Time.zone.now + start_time, Time.zone.now + end_time).any?
+  end
+
   private
 
   def starts_on_weekday
